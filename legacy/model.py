@@ -25,6 +25,7 @@ config = [
     ["B", 8],
     (1024, 3, 2),
     ["B", 4],  # To this point is Darknet-53
+
     (512, 1, 1),
     (1024, 3, 1),
     "S",
@@ -77,7 +78,6 @@ class ResidualBlock(nn.Module):
                 x = x + layer(x)
             else:
                 x = layer(x)
-
         return x
 
 
