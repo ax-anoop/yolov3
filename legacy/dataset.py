@@ -70,6 +70,7 @@ class YOLODataset(Dataset):
                 S = self.S[scale_idx]
                 i, j = int(S * y), int(S * x)  # which cell
                 anchor_taken = targets[scale_idx][anchor_on_scale, i, j, 0]
+                
                 if not anchor_taken and not has_anchor[scale_idx]:
                     targets[scale_idx][anchor_on_scale, i, j, 0] = 1
                     x_cell, y_cell = S * x - j, S * y - i  # both between [0,1]

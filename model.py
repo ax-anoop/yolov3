@@ -1,6 +1,8 @@
 import torch.nn as nn 
 import torch
 import time
+import loss 
+from legacy import model as legacy_model
 
 '''
     B = residual block & # of repeats
@@ -139,11 +141,12 @@ class YOLOv3(nn.Module):
 
 DEVICE = torch.device("cuda:1")
 if __name__ == '__main__':
-    model = YOLOv3()
-    model = model.to(DEVICE)
-
-    for i in range(100):
-        x = torch.randn((1, 3, 418, 418), device=DEVICE)
-        outputs = model(x)
-        time.sleep(1)
-        print(outputs[0].shape, outputs[1].shape, outputs[2].shape)
+    model = YOLOv3(num_classes=10).to(DEVICE)
+    model_leg = legacy_model.YOLOv3(num_classes=10).to(DEVICE)
+    
+    x = torch.randn((1, 3, 416, 416), device=DEVICE)
+    outputs = model(x)
+    
+    print(outputs[0].shape)
+    print(outputs[1].shape)
+    print(outputs[2].shape)

@@ -36,7 +36,7 @@ ANCHORS = [
 scale = 1.1
 train_transforms = A.Compose(
     [
-        A.LongestMaxSize(max_size=int(IMAGE_SIZE * scale)),
+        A.LongestMaxSize(max_size=int(IMAGE_SIZE * scale)), # LongestMaxSize will resize the image so that the longest side is equal to max_size
         A.PadIfNeeded(
             min_height=int(IMAGE_SIZE * scale),
             min_width=int(IMAGE_SIZE * scale),
